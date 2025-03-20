@@ -204,3 +204,38 @@ public class InternalController {
 > port 확인 및 end-point (localhost:8089/sample) 호출 로그 확인
 
 ![img11](image/img11.png)
+
+
+## Redis 설치
+
+### 1. Docker 실행
+- Docker Desktop 실행 후 컨테이너 목록 확인
+```shell
+docker ps
+```
+
+### 2. Docker로 Redis 실행
+````shell
+docker run --name redis-container -d -p 6379:6379 redis
+````
+
+> Redis에 비밀번호 설정이 필요한 경우
+
+````shell
+docker run --name redis-container -d -p 6379:6379 -e REDIS_PASSWORD=yourpassword redis
+````
+
+### 3. Redis 의존성 추가 (build.gradle)
+````shell
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+}
+````
+
+### 4. application.yml 설정
+````yml
+spring:
+  redis:
+    host: localhost
+    port: 6379
+````
