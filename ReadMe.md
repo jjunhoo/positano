@@ -239,3 +239,72 @@ spring:
     host: localhost
     port: 6379
 ````
+
+### 5. Redis 연결 테스트
+-  Redis 설정을 위한 RedisConfig 클래스 생성 (core 모듈)
+````java
+package config.redis;
+
+@Configuration
+public class RedisConfig {
+
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(redisConnectionFactory);
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        return template;
+    }
+}
+````
+
+### 6. Redis - Service 생성 
+````java
+@Service
+@RequiredArgsConstructor
+public class RedisService {
+
+    private final RedisTemplate<String, Object> redisTemplate;
+
+    public void saveData(String key, Object value) {
+        redisTemplate.opsForValue().set(key, value);
+    }
+
+    public Object getData(String key) {
+        return redisTemplate.opsForValue().get(key);
+    }
+}
+````
+
+### 7. Controller에서 테스트
+
+````java
+/**
+ * Redis - Sample Controller
+ * @param key
+ * @param value
+ * @return
+ */
+@GetMapping("/set/{key}/{value}")
+public String setRedisData(@PathVariable String key, @PathVariable String value) {
+    internalService.setRedisData(key, value);
+    return "Data saved!";
+}
+
+@GetMapping("/get/{key}")
+public Object getRedisData(@PathVariable String key) {
+    return internalService.getRedisData(key);
+}
+````
+
+### 8. 실행 및 테스트
+>  데이터 저장
+````java
+curl "http://localhost:8080/set/username/johndoe"
+````
+
+>  데이터 조회
+````java
+curl "http://localhost:8080/get/username"
+````
