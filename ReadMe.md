@@ -215,8 +215,22 @@ docker ps
 ```
 
 ### 2. Docker로 Redis 실행
+> 실행 
+
 ````shell
 docker run --name redis-container -d -p 6379:6379 redis
+````
+
+> 종료 
+
+````shell
+docker stop redis-container
+````
+
+> 재시작 
+
+````shell
+docker restart redis-container
 ````
 
 > Redis에 비밀번호 설정이 필요한 경우
