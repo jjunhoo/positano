@@ -1,9 +1,8 @@
-package com.internal.sample.service;
+package com.positano.internal.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import service.RedisService;
+import com.positano.core.service.RedisService;
 
 @Service
 @RequiredArgsConstructor

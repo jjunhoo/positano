@@ -1,4 +1,4 @@
-package dto;
+package com.positano.core.dto;
 
 import lombok.*;
 

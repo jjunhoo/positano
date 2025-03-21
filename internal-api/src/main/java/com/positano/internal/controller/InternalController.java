@@ -1,12 +1,12 @@
-package com.internal.sample.controller;
+package com.positano.internal.controller;
 
-import com.internal.sample.service.InternalService;
+import com.positano.internal.service.InternalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import dto.SampleDto;
+import com.positano.core.dto.SampleDto;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
