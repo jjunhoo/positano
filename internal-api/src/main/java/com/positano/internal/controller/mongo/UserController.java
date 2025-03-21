@@ -17,12 +17,12 @@ public class UserController {
 
     @PostMapping
     public User createUser(@RequestBody User user) {
-        return userService.saveUser(user);
+        return internalMongoService.createUser(user);
     }
 
     @GetMapping
     public List<User> getAllUsers() {
-        return userService.getAllUsers();
+        return internalMongoService.getAllUsers();
     }
 }
 
