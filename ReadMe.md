@@ -206,15 +206,9 @@ public class InternalController {
 ![img11](image/img11.png)
 
 
-## Redis 설치
+## Redis 연동
 
-### 1. Docker 실행
-- Docker Desktop 실행 후 컨테이너 목록 확인
-```shell
-docker ps
-```
-
-### 2. Docker로 Redis 실행
+### 1. Docker - Redis 실행
 > 실행 
 
 ````shell
@@ -238,6 +232,12 @@ docker restart redis-container
 ````shell
 docker run --name redis-container -d -p 6379:6379 -e REDIS_PASSWORD=yourpassword redis
 ````
+
+### 2. Docker - Redis 실행 확인
+- Docker Desktop 실행 후 컨테이너 목록 확인
+```shell
+docker ps
+```
 
 ### 3. Redis 의존성 추가 (build.gradle)
 ````shell
@@ -322,4 +322,50 @@ curl "http://localhost:8080/set/username/johndoe"
 >  데이터 조회
 ````java
 curl "http://localhost:8080/get/username"
+````
+
+## MongoDB 연동
+
+### 1. Docker - MongoDB 실행
+> 실행 
+
+````shell
+docker run --name mongodb-container -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin123 mongo
+````
+
+> 종료
+````shell
+docker stop mongodb-container
+````
+
+> 재시작
+````shell
+docker restart mongodb-container
+````
+
+### 2. Docker - MongoDB 실행 확인
+````shell
+docker ps
+````
+
+### 3. Docker - MongoDB 접속 확인
+
+````shell
+docker exec -it mongodb-container mongosh -u admin -p admin123
+````
+
+### 4. MongoDB 의존성 추가 (build.gradle)
+
+````gradle
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+}
+````
+
+### 5. application.yml 설정
+````yml
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:admin123@localhost:27017/mydatabase
 ````

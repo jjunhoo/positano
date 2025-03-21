@@ -1,12 +1,12 @@
-package com.positano.internal.service;
+package com.positano.internal.service.redis;
 
+import com.positano.core.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.positano.core.service.RedisService;
 
 @Service
 @RequiredArgsConstructor
-public class InternalService {
+public class InternalRedisService {
 
     private final RedisService redisService;
 

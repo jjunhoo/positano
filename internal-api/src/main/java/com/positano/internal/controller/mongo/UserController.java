@@ -1,7 +1,8 @@
 package com.positano.internal.controller.mongo;
 
 import com.positano.core.mongo.model.User;
-import com.positano.core.mongo.service.UserService;
+import com.positano.internal.service.mongo.InternalMongoService;
+import com.positano.internal.service.redis.InternalRedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    private final UserService userService;
+    private final InternalMongoService internalMongoService;
 
     @PostMapping
     public User createUser(@RequestBody User user) {
