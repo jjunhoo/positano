@@ -164,7 +164,7 @@ public class InternalApplication {
 
 ### 6. 공통 모듈 (core) 의존성 확인
 
-> [core] dto
+> [core] com.positano.core.dto
 
 ````java
 @Data
@@ -183,7 +183,7 @@ package com.internal.sample.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dto.SampleDto; // core 프로젝트 의존성 사용
+import com.positano.core.dto.SampleDto; // core 프로젝트 의존성 사용
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -256,8 +256,9 @@ spring:
 
 ### 5. Redis 연결 테스트
 -  Redis 설정을 위한 RedisConfig 클래스 생성 (core 모듈)
+
 ````java
-package config.redis;
+package com.positano.core.config.redis;
 
 @Configuration
 public class RedisConfig {
