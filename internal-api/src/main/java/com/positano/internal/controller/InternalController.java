@@ -1,20 +1,15 @@
 package com.positano.internal.controller;
 
-import com.positano.internal.service.InternalService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.positano.core.dto.SampleDto;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RequiredArgsConstructor
 @RestController
 public class InternalController {
-
-    private final InternalService internalService;
 
     /**
      * Sample Controller
@@ -28,20 +23,4 @@ public class InternalController {
         return sampleDto.toString();
     }
 
-    /**
-     * Redis - Sample Controller
-     * @param key
-     * @param value
-     * @return
-     */
-    @GetMapping("/set/{key}/{value}")
-    public String setRedisData(@PathVariable String key, @PathVariable String value) {
-        internalService.setRedisData(key, value);
-        return "Data saved!";
-    }
-
-    @GetMapping("/get/{key}")
-    public Object getRedisData(@PathVariable String key) {
-        return internalService.getRedisData(key);
-    }
 }
