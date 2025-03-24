@@ -391,3 +391,10 @@ spring:
 5. 실행
    - Run/Debug Configuration 에서 설정한 docker-compose up --build 설정 선택 후 상단의 실행 버튼(녹색 화살표)을 클릭하여 Docker Compose 서비스 시작
    - 또는 IntelliJ Terminal 에서 직접 `docker-compose up --build` 입력 후 실행
+
+> docker-compose 종료 
+
+````shell
+# terminal 실행
+docker-compose down
+````
