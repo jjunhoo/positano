@@ -330,7 +330,7 @@ curl "http://localhost:8080/get/username"
 > 실행 
 
 ````shell
-docker run --name mongodb-container -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin123 mongo
+docker run --name mongodb -d -p 27017:27017 mongo:4.4 --noauth
 ````
 
 > 종료
@@ -351,7 +351,7 @@ docker ps
 ### 3. Docker - MongoDB 접속 확인
 
 ````shell
-docker exec -it mongodb-container mongosh -u admin -p admin123
+docker exec -it mongodb mongo
 ````
 
 ### 4. MongoDB 의존성 추가 (build.gradle)
@@ -367,5 +367,13 @@ dependencies {
 spring:
   data:
     mongodb:
-      uri: mongodb://admin:admin123@localhost:27017/mydatabase
+      uri: mongodb://localhost:27017/admin
+````
+
+## docker-compose 실행
+
+````shell
+# 프로젝트 경로 이동 후 아래 명령어 입력 (redis, mongo, internal-api, external-api 실행 확인)
+# cd 프로젝트 경로
+docker-compose up --build
 ````
