@@ -370,10 +370,24 @@ spring:
       uri: mongodb://localhost:27017/admin
 ````
 
-## docker-compose 실행
+## IntelliJ - docker-compose 실행 환경
 
-````shell
-# 프로젝트 경로 이동 후 아래 명령어 입력 (redis, mongo, internal-api, external-api 실행 확인)
-# cd 프로젝트 경로
-docker-compose up --build
-````
+> Docker 플러그인 설치
+
+- Docker 플러그인 설치 (Preferences > Plugins)
+
+> IntelliJ - Docker Compose 실행 설정
+
+1. IntelliJ > Edit Configurations
+2. 왼쪽 상단 + 버튼 클릭 및 `Docker-Compose` 선택
+- ![img11](image/img11.png)
+3. Service 항목 > docker-compose.yml 파일이 있는 프로젝트 디렉터리를 선택
+4. Before launch 항목 > + 버튼 클릭 후 `Run External Tool` 추가  
+   - Name : `docker-compose up --build`
+   - Program : `docker-compose`
+   - Arguments: up --build
+   - Working directory: 프로젝트의 루트 디렉토리 (docker-compose.yml 파일이 위치한 디렉토리)
+   - ![img12](image/img12.png)
+5. 실행
+   - Run/Debug Configuration 에서 설정한 docker-compose up --build 설정 선택 후 상단의 실행 버튼(녹색 화살표)을 클릭하여 Docker Compose 서비스 시작
+   - 또는 IntelliJ Terminal 에서 직접 `docker-compose up --build` 입력 후 실행
