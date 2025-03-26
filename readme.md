@@ -1,3 +1,5 @@
+## TODO : JPA, Spring Batch, Spring Cloud, Spring Security, WebFlux, kotlin, Logging
+
 ## 멀티 모듈 프로젝트 구성
 
 ### 1. 구성
