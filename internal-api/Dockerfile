@@ -1,5 +1,9 @@
 # 사용하려는 베이스 이미지
-FROM openjdk:17-jdk-alpine
+# Mac M1
+# FROM azul/zulu-openjdk-alpine:17
+# Mac Intel
+# FROM openjdk:17-jdk-alpine
+FROM azul/zulu-openjdk-alpine:17
 
 # 작업 디렉토리 설정
 WORKDIR /app
