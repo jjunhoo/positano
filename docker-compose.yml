@@ -1,4 +1,19 @@
 services:
+  mysql:
+    image: mysql:8.0 # MySQL 8.0 이미지 사용
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword # 루트 비밀번호
+      MYSQL_DATABASE: mydatabase # 기본 DB 이름 (컨테이너 시작 시 자동 생성)
+      MYSQL_USER: user # 사용자 이름
+      MYSQL_PASSWORD: password # 사용자 비밀번호
+    ports:
+      - "3306:3306" # 호스트/컨테이너 포트 매핑
+    networks:
+      - app-network
+    volumes: # mysql-data 라는 볼륨을 MySQL 컨테이너의 /var/lib/mysql 디렉토리에 마운트
+      - mysql-data:/var/lib/mysql  # 데이터 영속성 설정
+
   redis:
     image: redis:6.2 # Redis 6.2 이미지
     container_name: redis # Redis 컨테이너 이름 지정 (redis)
@@ -41,6 +56,9 @@ services:
     networks:
       - app-network # app-network 네트워크 연결
     environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydatabase?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
       SPRING_REDIS_HOST: redis
       SPRING_REDIS_PORT: 6379
       SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/admin # Spring Boot 애플리케이션 MongoDB 연결
@@ -58,6 +76,9 @@ services:
     networks:
       - app-network
     environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydatabase?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
       SPRING_REDIS_HOST: redis
       SPRING_REDIS_PORT: 6379
       SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/admin
@@ -65,3 +86,7 @@ services:
 networks:
   app-network:
     driver: bridge # 서비스들이 동일한 네트워크에서 서로 통신할 수 있도록 설정 (기본 Docker 네트워크 구성)
+
+volumes:
+  mysql-data:
+    driver: local  # MySQL 데이터 영속성 설정

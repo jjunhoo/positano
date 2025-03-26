@@ -1,7 +1,23 @@
 spring:
+  # MySQL 접속 정보
+  datasource:
+    url: jdbc:mysql://mysql:3306/mydatabase?allowPublicKeyRetrieval=true&useSSL=false
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  sql:
+    init:
+      mode: always # data.sql 강제 실행
+  # Redis 접속 정보
   redis:
     host: redis
     port: 6379
+  # Mongo 접속 정보
   data:
     mongodb:
       uri: mongodb://mongodb:27017/admin
