@@ -1,4 +1,4 @@
-package com.positano.core.redis.service;
+package com.positano.repository.redis.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;

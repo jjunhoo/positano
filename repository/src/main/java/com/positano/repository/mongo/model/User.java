@@ -1,4 +1,4 @@
-package com.positano.core.mongo.model;
+package com.positano.repository.mongo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,5 @@
-package com.positano.core.mysql.entity;
+package com.positano.repository.mysql.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.positano.internal.controller.mysql;
 
-import com.positano.core.mysql.entity.UserInfo;
 import com.positano.internal.service.mysql.InternalMysqlService;
+import com.positano.repository.mysql.entity.UserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

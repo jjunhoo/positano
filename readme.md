@@ -1,4 +1,4 @@
-## TODO : JPA, Spring Batch, Spring Cloud, Spring Security, WebFlux, kotlin, Logging
+## TODO : JPA, Spring Batch, Spring Cloud, Spring Security, WebFlux, kotlin, Logging, AWS, ELK
 
 ## 멀티 모듈 프로젝트 구성
 
@@ -260,7 +260,7 @@ spring:
 -  Redis 설정을 위한 RedisConfig 클래스 생성 (core 모듈)
 
 ````java
-package com.positano.core.config.redis;
+package com.positano.core.com.positano.repository.redis;
 
 @Configuration
 public class RedisConfig {

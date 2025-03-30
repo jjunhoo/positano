@@ -46,9 +46,15 @@ subprojects {
     }
 }
 
-// 하위 프로젝트 의존성 관리 (core 프로젝트 - 공통성)
+// core - business process module
 project(':core') {
-    bootJar { enabled = false } // core - bootJar 패키징 X
+    bootJar { enabled = false } // bootJar 패키징 X
+    jar { enabled = true }
+}
+
+// repository - db module
+project(':repository') {
+    bootJar { enabled = false } // bootJar 패키징 X
     jar { enabled = true }
 }
 

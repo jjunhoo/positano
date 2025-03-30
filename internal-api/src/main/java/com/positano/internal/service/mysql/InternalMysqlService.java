@@ -1,7 +1,7 @@
 package com.positano.internal.service.mysql;
 
-import com.positano.core.mysql.entity.UserInfo;
-import com.positano.core.mysql.service.UserInfoService;
+import com.positano.repository.mysql.entity.UserInfo;
+import com.positano.repository.mysql.service.UserInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

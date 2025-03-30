@@ -1,7 +1,7 @@
 package com.positano.internal.controller.mongo;
 
-import com.positano.core.mongo.model.User;
 import com.positano.internal.service.mongo.InternalMongoService;
+import com.positano.repository.mongo.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

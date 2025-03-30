@@ -1,4 +1,4 @@
-package com.positano.core.config.redis;
+package com.positano.repository.config.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

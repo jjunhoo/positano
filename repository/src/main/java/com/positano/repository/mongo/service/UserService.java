@@ -1,7 +1,7 @@
-package com.positano.core.mongo.service;
+package com.positano.repository.mongo.service;
 
-import com.positano.core.mongo.model.User;
-import com.positano.core.mongo.repository.UserRepository;
+import com.positano.repository.mongo.model.User;
+import com.positano.repository.mongo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

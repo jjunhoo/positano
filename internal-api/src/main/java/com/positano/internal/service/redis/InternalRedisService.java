@@ -1,6 +1,6 @@
 package com.positano.internal.service.redis;
 
-import com.positano.core.redis.service.RedisService;
+import com.positano.repository.redis.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

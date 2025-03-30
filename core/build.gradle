@@ -3,7 +3,7 @@ plugins {
     id 'java-library'
 }
 
-group 'org.example'
+group 'org.core'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -12,11 +12,6 @@ repositories {
 
 dependencies {
     implementation 'org.testng:testng:7.1.0'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
-    api 'mysql:mysql-connector-java'
-    api 'org.springframework.boot:spring-boot-starter-data-jpa'
-    api 'org.springframework.boot:spring-boot-starter-data-redis'
-    api 'org.springframework.boot:spring-boot-starter-data-mongodb'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }

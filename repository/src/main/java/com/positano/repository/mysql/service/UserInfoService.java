@@ -1,7 +1,7 @@
-package com.positano.core.mysql.service;
+package com.positano.repository.mysql.service;
 
-import com.positano.core.mysql.entity.UserInfo;
-import com.positano.core.mysql.repository.UserInfoRepository;
+import com.positano.repository.mysql.entity.UserInfo;
+import com.positano.repository.mysql.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

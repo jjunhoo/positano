@@ -1,6 +1,6 @@
-package com.positano.core.mysql.repository;
+package com.positano.repository.mysql.repository;
 
-import com.positano.core.mysql.entity.UserInfo;
+import com.positano.repository.mysql.entity.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
