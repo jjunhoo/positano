@@ -15,6 +15,11 @@ services:
       - mysql-data:/var/lib/mysql  # 데이터 영속성 설정
       - ./repository/src/main/resources/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
       - ./repository/src/main/resources/data.sql:/docker-entrypoint-initdb.d/2_data.sql
+    healthcheck:
+      test: "mysqladmin ping -h localhost -u root --password=rootpassword"
+      interval: 10s
+      retries: 5
+      start_period: 30s
 
   redis:
     image: redis:6.2 # Redis 6.2 이미지
@@ -55,6 +60,11 @@ services:
       - "2181:2181"
     networks:
       - app-network
+    healthcheck:
+      test: "echo ruok | nc localhost 2181 | grep imok"
+      interval: 10s
+      retries: 5
+      start_period: 30s
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -73,6 +83,11 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
     networks:
       - app-network
+    healthcheck:
+      test: "nc -zv localhost 9092"
+      interval: 10s
+      retries: 5
+      start_period: 30s
 
   internal-api:
     build:
@@ -82,8 +97,11 @@ services:
       - "8089:8089" # 호스트/컨테이너 포트 매핑
     restart: always # 서비스가 실패할 경우 자동으로 재시작
     depends_on: # mongodb, redis 서비스 실행 후 internal-api 실행
+      - mysql
       - mongodb
       - redis
+      - zookeeper
+      - kafka
     networks:
       - app-network # app-network 네트워크 연결
     environment:
@@ -93,6 +111,11 @@ services:
       SPRING_REDIS_HOST: redis
       SPRING_REDIS_PORT: 6379
       SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/admin # Spring Boot 애플리케이션 MongoDB 연결
+    healthcheck:
+      test: "curl --silent --fail http://localhost:8089/actuator/health || exit 1"
+      interval: 10s
+      retries: 5
+      start_period: 30s
 
   external-api:
     build:
@@ -102,8 +125,11 @@ services:
     ports:
       - "8081:8081"
     depends_on:
+      - mysql
       - mongodb
       - redis
+      - zookeeper
+      - kafka
     networks:
       - app-network
     environment:
@@ -113,6 +139,32 @@ services:
       SPRING_REDIS_HOST: redis
       SPRING_REDIS_PORT: 6379
       SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/admin
+    healthcheck:
+      test: "curl --silent --fail http://localhost:8081/actuator/health || exit 1"
+      interval: 10s
+      retries: 5
+      start_period: 30s
+
+  consumer:
+    build:
+      context: ./consumer
+    container_name: consumer
+    restart: always
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mysql
+      - mongodb
+      - redis
+      - zookeeper
+      - kafka
+    networks:
+      - app-network
+    healthcheck:
+      test: "curl --silent --fail http://localhost:8083/actuator/health || exit 1"
+      interval: 10s
+      retries: 5
+      start_period: 30s
 
 networks:
   app-network:

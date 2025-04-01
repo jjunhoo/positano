@@ -58,6 +58,22 @@ project(':repository') {
     jar { enabled = true }
 }
 
+// message - message module
+project(':message') {
+    bootJar { enabled = false } // bootJar 패키징 X
+    jar { enabled = true }
+}
+
+// consumer - consumer module
+project(':consumer') {
+    bootJar { enabled = true }
+    jar { enabled = true }
+
+    dependencies {
+        implementation project(':message')
+    }
+}
+
 // 하위 프로젝트 의존성 관리 (internal-api)
 project(':internal-api') {
     bootJar { enabled = true }
@@ -65,6 +81,8 @@ project(':internal-api') {
 
     dependencies {
         implementation project(':core') // 컴파일 시 core 프로젝트 로드
+        implementation project(':repository')
+        implementation project(':message')
     }
 }
 
@@ -75,5 +93,7 @@ project(':external-api') {
 
     dependencies {
         implementation project(':core') // 컴파일 시 core 프로젝트 로드
+        implementation project(':repository')
+        implementation project(':message')
     }
 }
