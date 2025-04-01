@@ -13,6 +13,8 @@ services:
       - app-network
     volumes: # mysql-data 라는 볼륨을 MySQL 컨테이너의 /var/lib/mysql 디렉토리에 마운트
       - mysql-data:/var/lib/mysql  # 데이터 영속성 설정
+      - ./repository/src/main/resources/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ./repository/src/main/resources/data.sql:/docker-entrypoint-initdb.d/2_data.sql
 
   redis:
     image: redis:6.2 # Redis 6.2 이미지
