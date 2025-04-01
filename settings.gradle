@@ -3,4 +3,5 @@ include 'internal-api'
 include 'external-api'
 include 'core'
 include 'repository'
+include 'consumer'
 
