@@ -394,6 +394,40 @@ spring:
    - Run/Debug Configuration 에서 설정한 docker-compose up --build 설정 선택 후 상단의 실행 버튼(녹색 화살표)을 클릭하여 Docker Compose 서비스 시작
    - 또는 IntelliJ Terminal 에서 직접 `docker-compose up --build` 입력 후 실행
 
+## Kafka 연동 
+
+### 1. Kafka 접속
+````shell
+# 컨테이너 내부 접속
+docker exec -it kafka /bin/bash
+````
+
+### 2. 토픽 생성 
+````shell
+# 'test-topic' 생성 (partition : 3, replication-factor : 1)
+kafka-topics --create --topic test-topic --bootstrap-server kafka:9092 --partitions 3 --replication-factor 1
+````
+
+### 3. 토픽 목록 확인
+````shell
+kafka-topics --list --bootstrap-server kafka:9092
+````
+
+### 4. 프로듀서 메시지 전송 테스트
+````shell
+# 'test-topic' 토픽 메시지 전송
+kafka-console-producer --topic test-topic --bootstrap-server kafka:9092
+````
+
+### 5. 컨슈머 메시지 수신 테스트
+````shell
+# 'test-topic' 토픽 메시지 수신
+kafka-console-consumer --topic test-topic --bootstrap-server kafka:9092 --from-beginning
+````
+
+
+## 프로젝트 실행
+
 > docker-compose 실행
 ````shell
 # terminal 실행
