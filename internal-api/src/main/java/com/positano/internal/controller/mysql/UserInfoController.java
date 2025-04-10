@@ -17,14 +17,31 @@ public class UserInfoController {
 
     private final InternalMysqlService internalMysqlService;
 
+    /**
+     * JPA 기반 전체 조회
+     * @return
+     */
     @GetMapping("/users")
     public List<UserInfo> getAllUsers() {
         return internalMysqlService.getAllUsers();
     }
 
+    /**
+     * JPA 기반 ID 조회
+     * @param id
+     * @return
+     */
     @GetMapping("/users/{id}")
     public UserInfo getUserById(@PathVariable Long id) {
         return internalMysqlService.getUserById(id);
     }
 
+    /**
+     * MyBatis 기반 조회
+     * @return
+     */
+    @GetMapping("/mybatis/users")
+    public List<UserInfo> mybatisFindAll() {
+        return internalMysqlService.mybatisFindAll();
+    }
 }

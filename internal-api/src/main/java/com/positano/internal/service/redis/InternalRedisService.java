@@ -27,6 +27,10 @@ public class InternalRedisService {
      * @return
      */
     public Object getRedisData(String key) {
+
+        int[] arr = new int[]{ 1,2,3 };
+
+
         return redisService.getData(key);
     }
 

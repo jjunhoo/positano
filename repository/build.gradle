@@ -10,6 +10,15 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/main/resources'
+            include '**/*.xml'
+        }
+    }
+}
+
 dependencies {
     implementation 'org.testng:testng:7.1.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
@@ -17,6 +26,7 @@ dependencies {
     api 'org.springframework.boot:spring-boot-starter-data-jpa'
     api 'org.springframework.boot:spring-boot-starter-data-redis'
     api 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    api 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
